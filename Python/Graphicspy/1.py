@@ -10,13 +10,9 @@ coords = gr.Point(400, 700)
 velocity = gr.Point(4, 0)
 acceleration = gr.Point(0, 0)  # Зачем это тут, при удалении этой строчки ничего не меняется
 
-circle = gr.Circle(gr.Point(400, 700), 10)
-circle.setFill('red')
-circle.draw(window)
 
 def add(point_1, point_2):
-    new_point = gr.Point(point_1.x + point_2.x,
-                         point_1.y + point_2.y)
+    new_point = gr.Point(point_1.x + point_2.x, point_1.y + point_2.y)
 
     return new_point
 
@@ -27,15 +23,15 @@ def sub(point_1, point_2):
 
     return new_point
 
-"""
+
 def clear_window():
     rectangle = gr.Rectangle(gr.Point(0, 0), gr.Point(SIZE_X, SIZE_Y))
     rectangle.setFill('green')
     rectangle.draw(window)
 
-sun = gr.Circle(gr.Point(400, 400), 50)
-sun.setFill('yellow')
-sun.draw(window)
+    sun = gr.Circle(gr.Point(400, 400), 50)
+    sun.setFill('yellow')
+    sun.draw(window)
 
 
 def draw_ball(coords):
@@ -43,7 +39,7 @@ def draw_ball(coords):
     circle.setFill('red')
 
     circle.draw(window)
-"""
+
 
 def check_coords(coords, velocity):
     if coords.x < 0 or coords.x > SIZE_X:
@@ -70,18 +66,32 @@ def update_acceleration(ball_coords, center_coords):
     return gr.Point(-diff.x*G/distance_2, -diff.y*G/distance_2)
 
 
-def move_circle(x, y):
-    circle.move(x, y)
-
-
-
 while True:
-#    clear_window()
-#    draw_ball(coords)
-    move_circle(coords.x, coords.y)
+    clear_window()
+    draw_ball(coords)
+
     acceleration = update_acceleration(coords, gr.Point(400, 400))
+
     coords = update_coords(coords, velocity)
-    print(coords)
     velocity = update_velocity(velocity, acceleration)
     check_coords(coords, velocity)
+
     gr.time.sleep(1)
+
+"""
+SIZE_X = 800
+SIZE_Y = 800
+
+window = gr.GraphWin("Model", SIZE_X, SIZE_Y)
+
+#Обьект Circle создается здесь лишь ОДИН раз
+circle = gr.Circle(gr.Point(400, 400), 10)
+circle.draw(window)
+
+while True:
+    #Метод move передвигает обьект circle на (1, 1) относительно его текущего положения
+    circle.move(1, 1)
+
+    gr.time.sleep(0.02)
+    """
+
