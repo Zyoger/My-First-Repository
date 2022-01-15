@@ -1,7 +1,7 @@
 import turtle
 turtle.hideturtle()
 screen = turtle.Screen()
-screen.setup(500, 900)
+screen.setup(500, 600)
 x = 10000
 for i in range(1, x):
     i += 3
