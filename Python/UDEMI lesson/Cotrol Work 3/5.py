@@ -2,13 +2,15 @@
  отсортированными в алфавитном порядке. Например, строка “green-red-yellow-black-white” должна быть преобразована в
   строку “black-green-red-white-yellow”."""
 
-l = ['green-red-yellow-black-white']
+line = 'green-red-yellow-black-white'
 
 
-def sort():
-    pass
+def sort(in_line):
+    new_line = in_line.split('-')
+    new_line = sorted(new_line)
+    new_line = "-".join(new_line)
+    return new_line
 
 
-l1 = l.replace('-', ' ')
-print(l1)
-# '|->'.join(['a12', '1b2', 'c12'])
+print(line)
+print(sort(line))
