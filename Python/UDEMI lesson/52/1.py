@@ -13,7 +13,7 @@ class line():
     def lineEquation (self):
         A = self.y1 - self.y2
         B = self.x2 - self.x1
-        C = self.x1*self.x2 - self.x2*self.y1
+        C = self.x1*self.x2 - self.x2*self.y1 # проверить данную формулу
         print(f'{A}x+{B}y+{C}=0')
 
 
