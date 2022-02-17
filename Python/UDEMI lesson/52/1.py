@@ -16,9 +16,12 @@ class line():
 
 
     def intersectionPoints (self):
-        pass
+        x = -(self.x1*self.x2 - self.x2*self.y1)/(self.y1 - self.y2) # пересечение с Х
+        y = -(self.x1*self.x2 - self.x2*self.y1)/(self.x2 - self.x1) # пересечение с Y
+        print(f'Точки пересечения прямой с осями координат: ({x}:0), (0:{y})')
 
 
 
 l = line()
 l.lineEquation()
+l.intersectionPoints()
