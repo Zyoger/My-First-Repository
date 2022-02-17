@@ -15,6 +15,7 @@ class line():
         B = self.x2 - self.x1
         C = self.x1*self.y2 - self.x2*self.y1 # проверить данную формулу
         print(f'{A}x+{B}y+{C}=0')
+        # '{:+}'.format(A) пример вывода любого числа со знаком 
 
 
     def intersectionPoints (self):
