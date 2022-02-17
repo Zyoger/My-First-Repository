@@ -14,15 +14,13 @@ class line():
         A = self.y1 - self.y2
         B = self.x2 - self.x1
         C = self.x1*self.y2 - self.x2*self.y1 # проверить данную формулу
-        print(f'{A}x+{B}y+{C}=0')
-        # '{:+}'.format(A) пример вывода любого числа со знаком 
+        print('{:+}'.format(A)+'x'+'{:+}'.format(B)+'y'+'{:+}'.format(C)+'=0')
 
 
     def intersectionPoints (self):
         x = -(self.x1*self.x2 - self.x2*self.y1)/(self.y1 - self.y2) # пересечение с Х
         y = -(self.x1*self.x2 - self.x2*self.y1)/(self.x2 - self.x1) # пересечение с Y
         print(f'Точки пересечения прямой с осями координат: ({x}:0), (0:{y})')
-
 
 
 l = line()
