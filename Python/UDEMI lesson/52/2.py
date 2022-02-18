@@ -5,7 +5,7 @@
 
 
 class matrix():
-    array = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+    array = [[1, 0, 0], [0, 2, 0], [0, 0, 3]]
     N = 3
     M = 3
 
@@ -29,10 +29,6 @@ class matrix():
         else:
             print("Параметры данной матрицы не подходят для определения определителя")
 
-    def propertiesmatrix(self):
-        #
-        pass
-
     def identitymatrix(self):
         arr = self.array
         flag = True
@@ -44,7 +40,7 @@ class matrix():
                 if i != j:
                     if arr[i][j] != 0:
                         flag = False
-        return print(flag)
+        return flag
 
     def nullmatrix(self):
         arr = self.array
@@ -53,10 +49,27 @@ class matrix():
             for j in range(0, len(arr[i])):
                 if arr[i][j] != 0:
                     flag = False
-        return print(flag)
+        return flag
+
+    def diagonalmatrix(self):
+        arr = self.array
+        flag = True
+        for i in range(0, len(arr)):
+            for j in range(0, len(arr[i])):
+                if i == j:
+                    if arr[i][j] == 0:
+                        flag = False
+                if i != j:
+                    if arr[i][j] != 0:
+                        flag = False
+        return flag
+
+    def propertiesmatrix(self):
+        pass
 
 
 matrix().print()
 matrix().determinant()
 matrix().identitymatrix()
 matrix().nullmatrix()
+matrix().diagonalmatrix()
