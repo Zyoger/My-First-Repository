@@ -12,6 +12,9 @@
 
 
 class matrix():
+    """
+    Класс матрица
+    """
     # статические переменные
     numbermatrix = 0
     diagmatrix = 0
