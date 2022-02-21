@@ -1,7 +1,8 @@
-"""Определить класс “Матрица” со свойствами: размерность матрицы, элементы матрицы, - и методами:
+"""Определить класс “Матрица” со свойствами: размерность матрицы, элементы матрицы,- и методами:
 вывод матрицы на экран, вычисление определителя матрицы (для матриц с размерностью 2 или 3) и проверки,
 является ли матрица единичной, нулевой или диагональной.
-
+"""
+"""
 Измените класс “Матрица” следующим образом:
 свойства класса - размерность матрицы и элементы - должны быть динамическими и задаваться внутри нового метода,
 определяющего матрицу;
@@ -9,17 +10,27 @@
 добавьте метод, реализующий форматированный вывод на экран статических свойств класса.
 
 """
+"""Изменить классы “Прямая” и “Матрица”  следующим образом:
+все статические свойства классов должны изменяться только внутри классовых методов;
+выделить один или несколько вспомогательных методов (если это не было сделано ранее) и оформить их в виде статических
+методов.
+"""
 
 
-class matrix():
+class Matrix:
     """
     Класс матрица
     """
     # статические переменные
-    numbermatrix = 0
-    diagmatrix = 0
-    nulmatrix = 0
-    edmatrix = 0
+    number_matrix = 0
+    number_diagonal_matrix = 0
+    number_null_matrix = 0
+    number_identity_matrix = 0
+
+    def __init__(self):
+        self.arr = None
+        self.m = None
+        self.n = None
 
     def set(self, n, m, array):
         """
@@ -29,21 +40,25 @@ class matrix():
         self.n = n
         self.m = m
         self.arr = array
-        matrix.numbermatrix += 1
+        self.counter()
 
-    def print(self):
+    def counter(self):
+        Matrix.number_matrix += 1
+        a = Matrix.identity_matrix(self)
+        b = Matrix.null_matrix(self)
+        c = Matrix.diagonal_matrix(self)
+        if a:
+            Matrix.number_identity_matrix += 1
+        if b:
+            Matrix.number_null_matrix += 1
+        if c:
+            Matrix.number_diagonal_matrix += 1
+
+    def print_matrix(self):
         """
          Выводит матрицу на экран.
         """
-        self.diagonalmatrix()
-        self.nullmatrix()
-        self.identitymatrix()
-        print("*"*60)
-        print("Количество созданых матриц: ", matrix.numbermatrix)
-        print("Количество диагональных матриц: ", matrix.diagmatrix)
-        print("Количество нулевых матриц: ", matrix.nulmatrix)
-        print("Количество еденичных матриц: ", matrix.edmatrix)
-        print(f"MATRIX {matrix.numbermatrix}:")
+        print(f"MATRIX {Matrix.number_matrix}:")
         arr = self.arr
         for i in range(0, len(arr)):
             for j in range(0, len(arr[i])):
@@ -53,25 +68,26 @@ class matrix():
 
     def determinant(self):
         """
-        Расчитывает определитель матрицы.
+        Вычисляет определитель матрицы.
         :return: определитель
         """
         arr = self.arr
         if len(arr) == 2:
-            determatrix = arr[0][0]*arr[1][1] - arr[1][0]*arr[0][1]
+            determinant_matrix = arr[0][0] * arr[1][1] - arr[1][0] * arr[0][1]
             print("Данная матрица имеет размерность 2х2.")
-            print(f"Определитель для матрицы равен {determatrix}")
+            print(f"Определитель для матрицы равен {determinant_matrix}")
         elif len(arr) == 3:
-            determatrix = arr[0][0]*arr[1][1]*arr[2][2] + arr[0][1]*arr[1][2]*arr[2][0] + arr[0][2]*arr[1][0]*arr[2][1]\
-                          - arr[0][2]*arr[1][1]*arr[2][0] - arr[0][0]*arr[1][2]*arr[2][1] - arr[0][1]*arr[1][0]*arr[2][2]
+            determinant_matrix = arr[0][0] * arr[1][1] * arr[2][2] + arr[0][1] * arr[1][2] * arr[2][0] \
+                                 + arr[0][2] * arr[1][0] * arr[2][1] - arr[0][2] * arr[1][1] * arr[2][0] \
+                                 - arr[0][0] * arr[1][2] * arr[2][1] - arr[0][1] * arr[1][0] * arr[2][2]
             print("Данная матрица имеет размерность 3х3.")
-            print(f"Определитель для матрицы равен {determatrix}")
+            print(f"Определитель для матрицы равен {determinant_matrix}")
         else:
             print("Параметры данной матрицы не подходят для определения определителя")
 
-    def identitymatrix(self):
+    def identity_matrix(self):
         """
-        Функция определяет является ли матрица единичной.
+        Функция определяет, является ли матрица единичной.
         :return: True если матрица единичная.
         """
         arr = self.arr
@@ -84,13 +100,11 @@ class matrix():
                 if i != j:
                     if arr[i][j] != 0:
                         flag = False
-        if flag:
-            matrix.edmatrix += 1
         return flag
 
-    def nullmatrix(self):
+    def null_matrix(self):
         """
-        Функция определяет является ли матрица нулевой.
+        Функция определяет, является ли матрица нулевой.
         :return: True если матрица нулевая.
         """
         arr = self.arr
@@ -99,13 +113,11 @@ class matrix():
             for j in range(0, len(arr[i])):
                 if arr[i][j] != 0:
                     flag = False
-        if flag:
-            matrix.nulmatrix += 1
         return flag
 
-    def diagonalmatrix(self):
+    def diagonal_matrix(self):
         """
-        Функция определяет является ли матрица диагональной.
+        Функция определяет, является ли матрица диагональной.
         :return: True если матрица диагональная.
         """
         arr = self.arr
@@ -118,26 +130,32 @@ class matrix():
                 if i != j:
                     if arr[i][j] != 0:
                         flag = False
-        if flag:
-            matrix.diagmatrix += 1
         return flag
 
-    def propertiesmatrix(self):
-        pass
 
+print()
 
+print("*"*60)
 arr1 = [[1, 0, 0], [0, 2, 0], [0, 0, 3]]
-m1 = matrix()
+m1 = Matrix()
 m1.set(3, 3, arr1)
-m1.print()
+m1.print_matrix()
 
+print("*"*60)
 arr2 = [[0, 0], [0, 0]]
-m2 = matrix()
+m2 = Matrix()
 m2.set(2, 2, arr2)
-m2.print()
+m2.print_matrix()
 
+print("*"*60)
 arr3 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-m3 = matrix()
+m3 = Matrix()
 m3.set(3, 3, arr3)
-m3.print()
-# print(matrix().numbermatrix)
+m3.print_matrix()
+
+print("="*60)
+print("\tКоличество созданных матриц: ", Matrix.number_matrix)
+print("\tКоличество диагональных матриц: ", Matrix.number_diagonal_matrix)
+print("\tКоличество нулевых матриц: ", Matrix.number_null_matrix)
+print("\tКоличество единичных матриц: ", Matrix.number_identity_matrix)
+print("="*60)
