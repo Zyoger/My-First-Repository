@@ -40,19 +40,21 @@ class Matrix:
         self.n = n
         self.m = m
         self.arr = array
-        self.counter()
+        Matrix.set_property(Matrix.null_matrix(array), Matrix.diagonal_matrix(array), Matrix.identity_matrix(array), 1)
 
-    def counter(self):
-        Matrix.number_matrix += 1
-        a = Matrix.identity_matrix(self)
-        b = Matrix.null_matrix(self)
-        c = Matrix.diagonal_matrix(self)
+    @classmethod
+    def set_property(cls, a, b, c, d):
+        """
+        Изменяет свойства матрицы.
+        :return:
+        """
+        cls.number_matrix += d
         if a:
-            Matrix.number_identity_matrix += 1
+            cls.number_null_matrix += 1
         if b:
-            Matrix.number_null_matrix += 1
+            cls.number_diagonal_matrix += 1
         if c:
-            Matrix.number_diagonal_matrix += 1
+            cls.number_identity_matrix += 1
 
     def print_matrix(self):
         """
@@ -85,12 +87,12 @@ class Matrix:
         else:
             print("Параметры данной матрицы не подходят для определения определителя")
 
-    def identity_matrix(self):
+    @staticmethod
+    def identity_matrix(arr):
         """
         Функция определяет, является ли матрица единичной.
         :return: True если матрица единичная.
         """
-        arr = self.arr
         flag = True
         for i in range(0, len(arr)):
             for j in range(0, len(arr[i])):
@@ -102,12 +104,12 @@ class Matrix:
                         flag = False
         return flag
 
-    def null_matrix(self):
+    @staticmethod
+    def null_matrix(arr):
         """
         Функция определяет, является ли матрица нулевой.
         :return: True если матрица нулевая.
         """
-        arr = self.arr
         flag = True
         for i in range(0, len(arr)):
             for j in range(0, len(arr[i])):
@@ -115,12 +117,12 @@ class Matrix:
                     flag = False
         return flag
 
-    def diagonal_matrix(self):
+    @staticmethod
+    def diagonal_matrix(arr):
         """
         Функция определяет, является ли матрица диагональной.
         :return: True если матрица диагональная.
         """
-        arr = self.arr
         flag = True
         for i in range(0, len(arr)):
             for j in range(0, len(arr[i])):
