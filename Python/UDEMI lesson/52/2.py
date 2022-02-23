@@ -21,26 +21,26 @@ class Matrix:
     """
     Класс матрица
     """
+
     # статические переменные
     number_matrix = 0
     number_diagonal_matrix = 0
     number_null_matrix = 0
     number_identity_matrix = 0
 
-    def __init__(self):
-        self.arr = None
-        self.m = None
-        self.n = None
+    def __new__(cls, *args, **kwargs):
+        print("--This is constructor--")
+        return super().__new__(cls)
 
-    def set(self, n, m, array):
-        """
-        Задает динамические параметры прямой.
-        :return:
-        """
+    def __init__(self,  n, m, array):
+        print("--This is initializator--")
         self.n = n
         self.m = m
         self.arr = array
         Matrix.set_property(Matrix.null_matrix(array), Matrix.diagonal_matrix(array), Matrix.identity_matrix(array), 1)
+
+    def __del__(self):
+        print("--This is destructor--")
 
     @classmethod
     def set_property(cls, a, b, c, d):
@@ -139,20 +139,17 @@ print()
 
 print("*"*60)
 arr1 = [[1, 0, 0], [0, 2, 0], [0, 0, 3]]
-m1 = Matrix()
-m1.set(3, 3, arr1)
+m1 = Matrix(3, 3, arr1)
 m1.print_matrix()
 
 print("*"*60)
 arr2 = [[0, 0], [0, 0]]
-m2 = Matrix()
-m2.set(2, 2, arr2)
+m2 = Matrix(2, 2, arr2)
 m2.print_matrix()
 
 print("*"*60)
 arr3 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-m3 = Matrix()
-m3.set(3, 3, arr3)
+m3 = Matrix(3, 3, arr3)
 m3.print_matrix()
 
 print("="*60)

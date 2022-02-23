@@ -19,10 +19,23 @@ class Line:
     """
     Класс прямая
     """
+
     # статические переменные
     number = 0
     are_parallel = 0
     zero_cross = 0
+
+    def __new__(cls, *args, **kwargs):
+        print("--This is constructor--")
+        return super().__new__(cls)
+
+    def __init__(self, x1, y1, x2, y2):
+        print("--This is initializator--")
+        self.x1, self.x2, self.y1, self.y2 = x1, x2, y1, y2
+        Line.line_cross(1, x1, x2, y1, y2, x2 * y1 - x1 * y2)
+
+    def __del__(self):
+        print("--This is destructor--")
 
     @classmethod
     def line_cross(cls, num, x1, x2, y1, y2, c):
@@ -36,14 +49,6 @@ class Line:
             Line.are_parallel += 1
         if c == 0:
             Line.zero_cross += 1
-
-    def set(self, x1, y1, x2, y2):
-        """
-        Задает динамические параметры прямой.
-        :return: координаты и количество прямых.
-        """
-        self.x1, self.x2, self.y1, self.y2 = x1, x2, y1, y2
-        Line.line_cross(1, x1, x2, y1, y2, x2 * y1 - x1 * y2)
 
     def line_equation(self):
         """
@@ -82,18 +87,15 @@ class Line:
 
 print()
 print("*"*60)
-l1 = Line()
-l1.set(1, 2, 2, 3)
+l1 = Line(2, 2, 3, 3)
 l1.line_equation()
 
 print("*"*60)
-l2 = Line()
-l2.set(10, 10.5, 20, 20)
+l2 = Line(10, 10.5, 20, 20)
 l2.line_equation()
 
 print("*"*60)
-l3 = Line()
-l3.set(10, 10, 10, 20)
+l3 = Line(10, 10, 10, 20)
 l3.line_equation()
 
 print("="*60)
