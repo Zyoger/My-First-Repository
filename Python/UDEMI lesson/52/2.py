@@ -33,7 +33,7 @@ class Matrix:
         return super().__new__(cls)
 
     def __init__(self,  n, m, array):
-        print("--This is initializator--")
+        print("--This is initialization--")
         self.n = n
         self.m = m
         self.arr = array
@@ -77,15 +77,15 @@ class Matrix:
         if len(arr) == 2:
             determinant_matrix = arr[0][0] * arr[1][1] - arr[1][0] * arr[0][1]
             print("Данная матрица имеет размерность 2х2.")
-            print(f"Определитель для матрицы равен {determinant_matrix}")
+            print(f"Определитель для матрицы равен: {determinant_matrix}")
         elif len(arr) == 3:
             determinant_matrix = arr[0][0] * arr[1][1] * arr[2][2] + arr[0][1] * arr[1][2] * arr[2][0] \
-                                 + arr[0][2] * arr[1][0] * arr[2][1] - arr[0][2] * arr[1][1] * arr[2][0] \
-                                 - arr[0][0] * arr[1][2] * arr[2][1] - arr[0][1] * arr[1][0] * arr[2][2]
+                               + arr[0][2] * arr[1][0] * arr[2][1] - arr[0][2] * arr[1][1] * arr[2][0] \
+                               - arr[0][0] * arr[1][2] * arr[2][1] - arr[0][1] * arr[1][0] * arr[2][2]
             print("Данная матрица имеет размерность 3х3.")
-            print(f"Определитель для матрицы равен {determinant_matrix}")
+            print(f"Определитель для матрицы равен: {determinant_matrix}")
         else:
-            print("Параметры данной матрицы не подходят для определения определителя")
+            print("Параметры данной матрицы не подходят для определения определителя.")
 
     @staticmethod
     def identity_matrix(arr):
