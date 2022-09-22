@@ -1,11 +1,11 @@
 import math
 a = 1
-b = 5
-c = -9
+b = -3
+c = 2
 
 d = b * b - 4 * a * c
 
-if b < 0:
+if d < 0:
     print("Корней нет")
 else:
     y1 = (-b + math.sqrt(d)) / 2 * a

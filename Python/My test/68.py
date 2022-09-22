@@ -6,7 +6,7 @@ def summYear(year):
     return summ
 
 
-for year in range(1940, 2050):
+for year in range(2000, 2022):
     for month in range(0, 12):
         for day in range(1, dayInMonth[month] + 1):
             allsumm = summYear(year) + (month + 1) + day

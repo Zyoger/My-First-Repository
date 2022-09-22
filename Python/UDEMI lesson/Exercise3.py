@@ -1,6 +1,6 @@
-A = 0   # Саша
-B = 0   # Ваня
-C = 1   # Коля
+A = False   # Саша
+B = False   # Ваня
+C = True   # Коля
 
 f1 = B and not A and not C
 f2 = C and not A and not B

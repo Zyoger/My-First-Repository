@@ -7,7 +7,8 @@
 
 s = 'Дана строка. Проверитя, сколько словя заканчивается на буквя я.'
 
-s1 = s.replace('.',' ')
+s1 = s.replace('.', ' ')
+print(s1)
 s1 = s1.replace(',', '')
 print(s)
 print(s1)
@@ -15,4 +16,3 @@ print(s1.count('я '))
 
 sw = 'гиппотоламус'
 print(sw.replace('', ' '))
-
